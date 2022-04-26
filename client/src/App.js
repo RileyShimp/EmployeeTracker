@@ -1,4 +1,3 @@
-import { Button } from 'bootstrap';
 import './App.css';
 import { useState } from "react";
 import Axios from 'axios';
@@ -9,6 +8,17 @@ function App() {
   const [age, setAge] = useState(0);
   const [position, setPosition] = useState("");
   const [wage, setWage] = useState(0);
+
+  const addEmployee = () =>{
+    Axios.post('http://localhost:3001/create', {
+      name: name, 
+      age: age, 
+      position: position, 
+      wage: wage
+    }).then(()=>{
+      console.log('success')
+    })
+  };
 
   return (
     <div className="App">
@@ -37,7 +47,7 @@ function App() {
         onChange={(event)=>{
           setWage(event.target.value);
         }}/>
-        <button>Add Employee</button>
+        <button onClick={addEmployee}>Add Employee</button>
       </div>
     </div>
   );
