@@ -104,7 +104,7 @@ function App() {
                 setNewWage(event.target.value);
               }}
               />
-            <button onClick={()=>{ updateEmployeeWage(val.id) }}>Update</button>
+            <button onClick={()=>{ updateEmployeeWage(val.id) }}>Update Wage</button>
             <button onClick={()=>{ deleteEmployee(val.id) }}>Delete Employee</button>
           </div>
           </div>
