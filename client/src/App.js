@@ -9,6 +9,8 @@ function App() {
   const [position, setPosition] = useState("");
   const [wage, setWage] = useState(0);
 
+  const [newWage, setNewWage] = useState(0)
+
   const [employeeList, setEmployeeList] = useState([]);
 
   const getEmployees = () =>{
@@ -24,9 +26,27 @@ function App() {
       position: position, 
       wage: wage
     }).then(()=>{
-      console.log('success')
+      setEmployeeList([...employeeList, {
+        name: name, 
+        age: age, 
+        position: position, 
+        wage: wage
+      }])
     })
   };
+
+  const updateEmployeeWage = (id) =>{
+  Axios.put('http://localhost:3001/update', { wage: newWage, id: id }).then((response)=>{
+    setEmployeeList(employeeList.map((val) => {
+      return val.id === id ? 
+      { id : val.id, 
+        name: val.name, 
+        age: val.age, 
+        position: val.position, 
+        wage: newWage} : val;
+    }))
+  })
+};
 
   return (
     <div className="App">
@@ -62,10 +82,22 @@ function App() {
 
       {employeeList.map((val,key) => {
         return <div className='employeeList'>
-          <h3>{val.name}</h3>
-          <h3>{val.age}</h3>
-          <h3>{val.position}</h3>
-          <h3>{val.wage}</h3>
+          <div>
+            <h3>Name: {val.name}</h3>
+            <h3>Age: {val.age}</h3>
+            <h3>Position: {val.position}</h3>
+            <h3>Wage: $ {val.wage}</h3>
+          </div>
+          <div>
+            <input 
+              type="text" 
+              placeholder='update wage here'
+              onChange={(event)=>{
+                setNewWage(event.target.value);
+              }}
+              />
+            <button onClick={()=>{updateEmployeeWage(val.id)}}>Update</button>
+          </div>
           </div>
       })}
       </div>

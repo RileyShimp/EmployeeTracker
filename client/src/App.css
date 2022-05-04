@@ -16,9 +16,10 @@
   width: 100%;
 }
 
-.information input {
+input {
   width: 30%;
   margin-bottom: 15px;
+  height: 30px;
 }
 
 button {
@@ -29,4 +30,26 @@ width: 150px;
 
 button:hover{
   cursor: pointer;
+}
+
+.employeeList {
+  width: 500px;
+  height: auto;
+  border: 1px solid;
+  margin: 10px;
+  display: flex;
+  padding: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  color: greenyellow;
+  background-color: rgb(43, 43, 43);
+  display: flex;
+  flex-direction:column
+}
+
+.employeeList h3 {
+  margin: 20px;
+}
+
+.employeeList button {
+  margin: 20px;
 }
