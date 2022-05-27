@@ -14,13 +14,13 @@ function App() {
   const [employeeList, setEmployeeList] = useState([]);
 
   const getEmployees = () =>{
-    Axios.get('http://localhost:3001/employees').then((response)=>{
+    Axios.get('https://react-employee-tracker-1.herokuapp.com/employees').then((response)=>{
       setEmployeeList(response.data)
     })
   };
 
   const addEmployee = () =>{
-    Axios.post('http://localhost:3001/create', {
+    Axios.post('https://react-employee-tracker-1.herokuapp.com/create', {
       name: name, 
       age: age, 
       position: position, 
@@ -36,7 +36,7 @@ function App() {
   };
 
   const updateEmployeeWage = (id) =>{
-  Axios.put('http://localhost:3001/update', { wage: newWage, id: id }).then((response)=>{
+  Axios.put('https://react-employee-tracker-1.herokuapp.com/update', { wage: newWage, id: id }).then((response)=>{
     setEmployeeList(employeeList.map((val) => {
       return val.id === id ? 
       { id : val.id, 
@@ -49,7 +49,7 @@ function App() {
   };
 
   const deleteEmployee = (id) =>{
-    Axios.delete(`http://localhost:3001/delete/${id}`).then((response) => {
+    Axios.delete(`https://react-employee-tracker-1.herokuapp.com/delete/${id}`).then((response) => {
       setEmployeeList(employeeList.filter((val)=> {
         return val.id !== id;
       }))

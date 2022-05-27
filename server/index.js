@@ -1,17 +1,12 @@
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
 const cors = require('cors');
+const db = require("./config/db");
 
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
-  user: 'root',
-  host: 'localhost',
-  password: 'epicodus',
-  database: 'employeeSystem'
-});
+const PORT = 3001;
 
 app.post('/create', (req,res) => {
   const name = req.body.name;
@@ -64,6 +59,7 @@ app.delete('/delete/:id', (req,res) => {
   });
 });
 
-app.listen(3001, ()=>{
-  console.log("Yours server is running on port 3001");
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Yours server is running on port ${PORT}`);
 });
+
